@@ -1,0 +1,50 @@
+.headerLogo img {
+  width: 15vh;
+  height: 6vh;
+}
+
+.headerNav {
+  /*
+  -- Add to header animation --
+  background-color: white;
+  border-bottom: 1px solid rgba(240,240,240,1);
+  box-shadow: 0 4px 2px -2px rgba(230,230,230,0.5);*/
+  height: 8vh;
+}
+
+ul {
+  width: 70%;
+  margin-bottom: 0vh;
+  padding-left: 0vh;
+}
+
+li {
+  display: inline;
+}
+
+/*
+Change to searchbox on scroll
+.headerSearchBox {
+  border: 1px solid rgba(220,220,220,1) !important;
+  border-radius: 3vh;
+  width: 25vh;
+  height: 4.3vh;
+  box-shadow: 0 4px 2px -2px rgb(220, 220, 220);
+}
+
+#headerSearchContainer img {
+  position: relative;
+  right: 4vh;
+  bottom: 0.2vh;
+  width: 3.5vh;
+  height: 3.5vh;
+}*/
+
+#loginButtonContainer {
+  width: 15vh;
+}
+
+#loginButtonContainer a img {
+  width: 3.5vh;
+  height: 3.5vh;
+}

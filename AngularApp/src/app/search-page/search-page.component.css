@@ -1,0 +1,222 @@
+.searchFilters {
+  margin: 0 0;
+  height: 10vh;
+  box-shadow: 0px 2px 2px #b5b5b5;
+}
+
+.searchFilters ul li {
+  border: 1px solid #eeeeee;
+  border-radius: 5vh;
+  padding: 1vh 2vh;
+  cursor: pointer;
+}
+
+.searchFilters img {
+  width: 2vh;
+  height: 2vh;
+}
+
+.searchFilters ul {
+  width: 85%;
+  margin-left: 4vh;
+}
+
+.searchFilters .filterSpace{
+  width: 1vh;
+}
+
+ngb-datepicker {
+  top: -76vh !important;
+}
+
+.datePickerWrapper {
+  bottom: 10vh;
+  left: 54vh;
+  height: 50%;
+  position: relative;
+}
+
+.dropdownGuestsWrapper {
+  position: relative;
+  bottom: 86vh;
+}
+
+.dropdownGuests {
+  top: 0vh !important;
+  left: 110vh !important;
+}
+
+.searchBody {
+
+  height: 80vh;
+}
+
+.searchBodyLeft {
+
+  width: 50%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.bodyLeftSubContainer {
+  width: 100%;
+  height: 99%;
+}
+
+.searchBodyRight {
+  width: 50%;
+  height: 100%;
+}
+
+.searchModalContainer {
+  width: 100%;
+  height: 35%;
+  margin-top: 2vh;
+}
+
+.searchModal {
+  width: 95%;
+  height: 100%;
+  border: 1px solid rgba(217, 217, 217);
+  border-radius: 2vh;
+}
+
+.searchModal:hover {
+  cursor: pointer;
+  background-color: rgba(238, 238, 238,0.2);
+}
+
+.searchModalSubContainer {
+  width: 95%;
+  height: 90%;
+}
+
+.searchModalLeft {
+  width: 30%;
+}
+
+.searchModalLeft img {
+  width: 90%;
+  height: 95%;
+  border-radius: 1vh;
+}
+
+.searchModalCenter {
+  width: 45%;
+  height: 95%;
+  margin-left: 1vh;
+}
+
+.searchModalRight {
+  width: 25%;
+  height: 95%;
+}
+
+.searchModalTopText h3 {
+  margin-bottom: 0;
+  font-size: 2.6vh;
+}
+
+.searchModalTopText p {
+  color: #C8C8C8;
+  font-size: 1.5vh;
+}
+
+.searchModalBottomText {
+  margin-top: 5vh;
+}
+
+.searchModalBottomText h5 {
+  margin-bottom: 1vh;
+  font-weight: bold;
+}
+
+.searchModalBottomText p {
+  font-size: 1.2vh;
+}
+
+.scoreContainer h2 {
+  margin-left: 1vh;
+}
+
+.scoreContainer h4 {
+  margin-right: 1vh;
+  margin-bottom: 0;
+  padding-top: 1vh;
+}
+
+.scoreImage {
+  background-color: #FFF8D1;
+  width: 68%;
+  border-radius: 1vh;
+}
+
+.scoreImage img {
+  width: 5vh;
+  height: 5vh;
+}
+
+.modalSearchReviews h5 {
+  margin-top: 1vh;
+  color: #C8C8C8;
+}
+
+.modalSearchReviews h5:hover {
+  text-decoration: underline;
+}
+
+agm-map {
+  height: 100%;
+}
+
+.priceMarker {
+  color: white;
+  width: 10vh;
+  height: 10vh;
+  background-image: url('../../assets/img/icons/messageBoxSquared.png');
+  background-size: cover;
+  cursor: pointer;
+}
+
+.priceMarker h2 {
+  font-size: 2vh;
+}
+
+.searchFiltersContainer {
+  height: 80%;
+  width: 70%;
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+  .headerNav {
+    height: 14vh;
+  }
+
+  .searchFilters {
+    margin-top: 4vh;
+  }
+
+  .searchFiltersContainer {
+    height: 80%;
+    width: 90%;
+  }
+
+  .searchModalBottomText p {
+    font-size: 1.8vh;
+  }
+
+  .searchBody {
+    height: 70vh;
+  }
+
+  .searchModalContainer {
+    height: 45%;
+  }
+
+  .dropdownGuests {
+    left: 121vh !important;
+    margin-top: 1vh;
+  }
+
+}

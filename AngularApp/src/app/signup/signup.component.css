@@ -1,0 +1,43 @@
+.formLoginSignupWrapper {
+  overflow: hidden;
+}
+
+.enterDetailsWrapper {
+  width: auto !important;
+}
+
+.enterDetailsWrapper {
+  border: 1px solid #C8C8C8 !important;
+  padding: 2vh 2vh;
+  border-radius: 1vh;
+}
+
+.enterDetailsContainer {
+  background-color: white !important;
+  height: 60% !important;
+}
+
+.reservationFormBody {
+  height: 100vh !important;
+}
+
+.reservationFormForm {
+  height: 100vh !important;
+}
+
+#loginBtn {
+  height: 5vh !important;
+  width: 10% !important;
+}
+
+.makeSearchboxLarger {
+  height: 50vh !important;
+}
+
+.makeSearchboxSmaller {
+  height: 10vh !important;
+}
+
+#headerSearchContainer {
+  height: 10vh;
+}

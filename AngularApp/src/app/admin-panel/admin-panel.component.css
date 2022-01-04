@@ -1,0 +1,155 @@
+.headerSearchWrapper {
+  background-color: #95D3FF;
+}
+
+.headerSearchWrapper h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0 !important;
+  margin-left: 1vh;
+}
+
+.adminHeaderText {
+  height: 100% !important;
+}
+
+.headerSearchWrapper h3 {
+  font-size: 22px;
+  color: white;
+  margin-bottom: 0vh;
+}
+
+.headerSearchWrapper h3:hover {
+  color: #F4DD11;
+  cursor: pointer;
+}
+
+.adminBody {
+  height: 90vh;
+  width: 100%;
+}
+
+.adminTopBody {
+  width: 100%;
+  height: 30%;
+}
+
+.adminRectangle {
+  height: 80%;
+  width: 25%;
+}
+
+.adminConfirmed {
+  background-color: #1CFF84;
+}
+
+.adminConfirmed img {
+  width: 20% !important;
+  height: 80% !important;
+}
+
+.adminTypes {
+  margin-right: 10vh;
+  background-color: #FF5064;
+}
+
+.adminAvailable {
+  margin-left: 10vh;
+  background-color: #4378FF;
+}
+
+.adminSeparator {
+  height: 5vh;
+}
+
+.adminBottomBody {
+  width: 100%;
+  height: 60%;
+}
+
+.rectangleTop {
+  height: 60%;
+}
+
+.rectangleTop h1 {
+  color: white;
+  font-size: 80px;
+  margin-right: 3.5vh;
+}
+
+.rectangleTop img {
+  width: 25%;
+  height: 60%;
+  margin-left: 3.5vh;
+}
+
+.rectangleBottom {
+  height: 25%;
+}
+
+.rectangleBottom h2 {
+color: white;
+margin-right: 3.5vh;
+}
+
+.topRectangleWrapper {
+  height: 100%;
+}
+
+
+.tableHeader {
+  width: 100%;
+}
+
+.tableHeader h3{
+  border-bottom: 1px solid #FFEE58;
+  padding-bottom: 2vh;
+}
+
+.tableHeader div {
+  width: 90%;
+}
+
+.tableBody {
+  margin-top: 2vh;
+}
+
+td {
+  padding: 2vh !important;
+}
+
+tr:hover {
+  cursor: pointer;
+}
+
+.appointmentId {
+  font-weight: bold !important;
+}
+
+.cancelBtn {
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  font-weight: 400;
+  border-radius: 1vh;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5vh;
+  background-color: rgba(255, 92, 92,1);
+}
+
+.cancelBtn:hover {
+  background-color: rgba(255, 69, 69,1);
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .cancelBtn {
+    font-size: 2vh;
+  }
+}
+
+
+
+

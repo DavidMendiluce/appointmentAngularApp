@@ -1,0 +1,149 @@
+<div id="mainPageBody">
+
+  <div style="width: 100%;" class="headerNav d-flex justify-content-center">
+    <ul class="headerMainUl d-flex inline-flex justify-content-between">
+      <li class="headerLogo  my-auto">
+        <div class="d-flex justify-content-center"><img routerLink="/" class="my-auto" src="assets/img/logos/bookMeLogoLong.png"/></div>
+      </li>
+      <!--SearchBox-->
+      <li [@fadeInOut] id="headerSearchContainer"  class="my-auto headerMiniHeight">
+        <div (click)="resetHeaderSerarchBox()" class="headerSearchBox d-flex inline-flex">
+          <div (click)="removeSearchPops()" class="locationSelector d-flex flex-column justify-content-center">
+            <h5>Location</h5>
+            <input id="locationInput" list="countries" placeholder="Choose a location">
+            <datalist id="countries">
+              <option value="Paris">
+              <option value="Moscow">
+              <option value="New York">
+              <option value="Sydney">
+            </datalist>
+          </div>
+          <div class="lineSeparatorLocation separator align-self-center"></div>
+          <div (click)="popDatePicker()" class="checkInOutSelector d-flex flex-column justify-content-center">
+            <h5>Check-in and Check-out</h5>
+            <p>Add a date</p>
+          </div>
+          <div class="lineSeparatorCheckIn separator align-self-center"></div>
+          <div (click)="addGuests()" class=" guestsSelector d-flex inline-flex">
+            <div class="d-flex flex-column justify-content-center">
+              <h5>Guests</h5>
+              <p>Add guests</p>
+              <p class=" miniSearchLocation d-flex my-auto makeHidden" style="color: #929292">Choose a location</p>
+            </div>
+            <img class="lenses" (click)="searchMain()" src="{{lensImagePath}}"/>
+          </div>
+
+        </div>
+        <div class="datePickerContainer">
+          <ngb-datepicker class="makeHidden"  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" outsideDays="hidden">
+          </ngb-datepicker>
+
+          <ng-template #t let-date let-focused="focused">
+            <span class="custom-day"
+                  [class.focused]="focused"
+                  [class.range]="isRange(date)"
+                  [class.faded]="isHovered(date) || isInside(date)"
+                  (mouseenter)="hoveredDate = date"
+                  (mouseleave)="hoveredDate = null">
+              {{ date.day }}
+            </span>
+          </ng-template>
+        </div>
+        <div>
+          <div class="dropdownGuests makeHidden">
+            <ul class="d-flex flex-column justify-content-center">
+              <li class="d-flex justify-content-between">
+                <div class="guestDescription">
+                  <h5>Adults</h5>
+                  <p>Ages 13 and above</p>
+                </div>
+                <div class="guestAddRest d-flex inline-flex justify-content-between">
+                  <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusAdultPath}}" (click)="addAdult()"/></div>
+                  <h4 class="my-auto">{{numberOfAdults}}</h4>
+                  <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusAdultPath}}" (click)="restAdult()"/></div>
+                </div>
+              </li>
+              <div width="100%" class="d-flex justify-content-center"><div class="guestLineSeparator"></div></div>
+              <li class="d-flex justify-content-between">
+                <div class="guestDescription">
+                  <h5>Children</h5>
+                  <p>Ages bellow 13</p>
+                </div>
+                <div class="guestAddRest d-flex inline-flex justify-content-between">
+                  <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusChildrenPath}}" (click)="addChildren()"/></div>
+                  <h4 class="my-auto">{{numberOfChildren}}</h4>
+                  <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusChildrenPath}}" (click)="restChildren()"/></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </li>
+
+      <li id="loginButtonContainer" class="my-auto d-flex justify-content-end">
+        <div class="loginBtnSubContainer d-flex flex-column justify-content-between">
+        <div class="loginImageContainer d-flex justify-content-end" ><img class="my-auto" (click)="showLoginSignUp()" src="assets/img/icons/hamburgerAfter.png" /></div>
+        <div class="makeHidden" id="loginSignupPopupWrapper">
+          <div width="100%" style="vertical-align: top;" class="d-flex justify-content-end">
+            <div class=" d-flex flex-column justify-content-center my-auto loginSignUpPopup">
+              <div class="loginWrapper d-flex flex-column justify-content-between">
+                <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="signUpText d-flex my-auto text-center justify-content-start">SignUp</h5></div>
+                <div class="loginLineSeparator"></div>
+                <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="d-flex my-auto text-center justify-content-start">Login</h5></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  </div>
+
+  <div class="formLoginSignupWrapper d-flex flex-column justify-content-start">
+
+  <div (click)="miniHeader()" class="reservationFormBody">
+
+    <div class="descriptionSectionSeparator"></div>
+    <div class="descriptionSectionSeparator"></div>
+
+
+    <div class="reservationFormForm d-flex flex-column justify-content-start">
+      <div class="enterDetailsContainer d-flex justify-content-center">
+        <div class="enterDetailsWrapper d-flex flex-column justify-content-center">
+
+          <div style="height: 40% !important;" class="enterDetailsFragment">
+            <div class="formFieldsWrapper d-flex justify-content-between">
+              <div>
+                <h5 ><b>User or email</b></h5>
+                <div class="inputBorder d-flex justify-content-center">
+                  <input name="email" type="email" id="emailInput">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="enterDetailsFragment" style="height: 30% !important; margin-top: 2vh !important;">
+            <div class="formFieldsWrapper d-flex justify-content-between">
+              <div>
+                <h5 ><b>Password</b></h5>
+                <div class="inputBorder d-flex justify-content-center">
+                  <input name="password" type="password" id="passwordInput">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="confirmReserveBtn d-flex flex-column justify-content-center">
+        <div class="d-flex justify-content-center" style="width: 100%; height: 100%;">
+          <div id="loginBtn" class="reserveBtn my-auto d-flex flex-column justify-content-center"><a (click)="onLogin()" class="text-center">Login</a></div>
+        </div>
+
+      </div>
+
+    </div>
+
+   </div>
+
+  </div>

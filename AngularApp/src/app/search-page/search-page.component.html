@@ -1,0 +1,235 @@
+
+<div id="mainPageBody">
+     <!--Header-->
+<div class="headerSearchWrapper">
+    <div style="width: 100%;" class="headerNav d-flex justify-content-center">
+        <ul style="width: 95%" class="d-flex inline-flex justify-content-between">
+          <li class="headerLogo">
+            <div style="height: 100%;" class="d-flex flex-column justify-content-center my-auto">
+              <img routerLink="/" class="my-auto" src="assets/img/logos/bookMeLogoLong.png"/>
+            </div>
+          </li>
+          <!--SearchBox-->
+          <li [@fadeInOut] id="headerSearchContainer" style="height: 100%;" class="d-flex justify-content-center">
+            <div class="my-auto d-flex justify-contnet-center" >
+              <div class="headerSearchBox d-flex inline-flex">
+                <div (click)="removeSearchPops()" class="locationSelector d-flex flex-column justify-content-center">
+                  <h5>Location</h5>
+                  <input id="locationInput" list="countries" placeholder="{{this.city}}">
+                  <datalist id="countries">
+                    <option value="Paris">
+                    <option value="Moscow">
+                    <option value="NewYork">
+                    <option value="Sydney">
+                  </datalist>
+                </div>
+                <div class="lineSeparatorLocation separator align-self-center"></div>
+                <div (click)="popDatePicker()" class="checkInOutSelector d-flex flex-column justify-content-center">
+                  <h5>Check-in and Check-out</h5>
+                  <p id="addDateText">{{this.checkInDate | date: 'mediumDate'}} - {{this.checkOutDate | date: 'mediumDate'}}</p>
+                </div>
+                <div class="lineSeparatorCheckIn separator align-self-center"></div>
+                <div (click)="addGuests()" class=" guestsSelector d-flex inline-flex">
+                  <div class="guestsSelectorTextWrap d-flex flex-column justify-content-center">
+                    <h5>Guests</h5>
+                    <div class="d-flex guestsSelectorText">
+                      <p id="addAdultsText">{{this.adultGuests}} Adults</p>
+                      <p  id="addGuestsSeparator" style="margin-left: 1vh; margin-right: 1vh"> - </p>
+                      <p  id="addChildrenText">{{this.childrenGuests}} Children</p>
+                    </div>
+
+                    <p class=" miniSearchLocation d-flex my-auto makeHidden" style="color: #929292">Choose a location</p>
+                  </div>
+                  <img class="lenses" (click)="searchMain()" src="{{lensImagePath}}"/>
+                </div>
+
+              </div>
+            </div>
+            </li>
+
+          <li id="loginButtonContainer" class="my-auto d-flex justify-content-end">
+            <div class="loginBtnSubContainer d-flex flex-column justify-content-between">
+            <div style="height: 10vh;" class="loginImageContainer d-flex justify-content-end" >
+              <img class="my-auto" (click)="showLoginSignUp()" src="assets/img/icons/hamburgerAfter.png" />
+            </div>
+            <div class="makeHidden" id="loginSignupPopupWrapper">
+              <div width="100%" style="vertical-align: top;" class="d-flex justify-content-end">
+                <div class="d-flex flex-column justify-content-center my-auto loginSignUpPopup">
+                  <div class="loginWrapper d-flex flex-column justify-content-between">
+                    <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="signUpText d-flex my-auto text-center justify-content-start">SignUp</h5></div>
+                    <div class="loginLineSeparator"></div>
+                    <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="d-flex my-auto text-center justify-content-start">Login</h5></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </li>
+        </ul>
+    </div>
+    </div>
+
+    <div class="searchFilters">
+      <div class="searchFiltersContainer d-flex flex-column justify-content-end" >
+        <ul class="d-flex inline-flex justify-content-around">
+          <li  class="d-flex inline-flex justify-content-between ">
+            <p>Price</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+          <li  class="d-flex inline-flex justify-content-center ">
+            <p>Guest rating</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+          <li  class="d-flex inline-flex justify-content-center ">
+            <p>Distance from downtown</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+          <li  class="d-flex inline-flex justify-content-center ">
+            <p>Facilites</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+          <li  class="d-flex inline-flex justify-content-center ">
+            <p>Free WiFi</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+          <li  class="d-flex inline-flex justify-content-center ">
+            <p>Pets allowed</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+          <li  class="d-flex inline-flex justify-content-center ">
+            <p>Filters</p>
+            <div class="filterSpace"></div>
+            <img src="assets/img/icons/downArrowPng.png" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+<div class="searchBody d-flex inline-flex justify-content-between">
+  <div class="searchBodyLeft d-flex flex-column">
+    <div class="bodyLeftSubContainer">
+
+
+      <!--Search Modal for ng-Repeat -->
+      <div *ngFor="let location of this.locationsArrayFinalFiltered" class="searchModalContainer d-flex inline-flex justify-content-center">
+        <div [routerLink]="['/details', location.locationId, location.price, this.city, this.checkInDate, this.checkOutDate, this.adultGuests, this.childrenGuests]" class="searchModal d-flex justify-content-center">
+          <div class="searchModalSubContainer d-flex my-auto">
+            <div class="searchModalLeft d-flex justify-content-start">
+              <img class="my-auto" src="assets/img/images/{{location.imageMain}}" />
+            </div>
+            <div class="searchModalCenter my-auto">
+              <div class="searchModalTopText">
+                <h3>{{location.title}}</h3>
+                <p>{{location.distanceFromCenter}} Km From city center</p>
+              </div>
+              <div class="searchModalBottomText">
+                <h5>{{location.roomType | titlecase}}</h5>
+                <p>{{location.roomType | titlecase}} • {{location.bedrooms}} Bedrooms • {{location.bathrooms}} Bathrooms • {{location.size}}m2 • {{location.wifi}} • {{location.breakfast | titlecase}}</p>
+              </div>
+            </div>
+            <div class="searchModalRight d-flex flex-column justify-content-between my-auto">
+              <div class="priceContainer">
+                <div class="d-flex justify-content-end">
+                  <h2>{{location.price}}$/</h2><h4 class="d-flex flex-column justify-content-end">night</h4>
+                </div>
+              </div>
+              <div class="scoreContainer">
+                <div class="d-flex justify-content-end">
+                  <div class="scoreImage d-flex justify-content-end">
+                    <img src="assets/img/icons/starCroped.png"/>
+                    <h2 class="d-flex my-auto">{{location.score | number : '1.2-2' }}/</h2>
+                    <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+                  </div>
+                </div>
+
+                <div class="modalSearchReviews d-flex justify-content-end">
+                  <h5>({{location.numberOfReviews}} reviews)</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="searchBodyRight">
+    <agm-map [styles]="[mapTypeStyle]" [zoom]='15' [latitude]="lat" [longitude]="lng">
+            <agm-overlay
+          *ngFor      = "let item of latLngArray"
+          [latitude]  = "item.latitude"
+          [longitude] = "item.longitude"
+        >
+          <!-- blue html square -->
+          <div [routerLink]="['/details', item.id, item.price, this.city, this.checkInDate, this.checkOutDate, this.adultGuests, this.childrenGuests]" class="priceMarker d-flex justify-content-center">
+            <h2 class="d-flex my-auto text-center"> {{item.title}}</h2>
+          </div>
+        </agm-overlay>
+    </agm-map>
+  </div>
+</div>
+
+
+<div class="datePickerWrapper">
+  <ngb-datepicker class="makeHidden"  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" outsideDays="hidden">
+  </ngb-datepicker>
+
+  <ng-template #t let-date let-focused="focused">
+    <span class="custom-day"
+          [class.focused]="focused"
+          [class.range]="isRange(date)"
+          [class.faded]="isHovered(date) || isInside(date)"
+          (mouseenter)="hoveredDate = date"
+          (mouseleave)="hoveredDate = null">
+      {{ date.day }}
+    </span>
+  </ng-template>
+</div>
+
+<div class="dropdownGuestsWrapper">
+  <div class="dropdownGuests makeHidden">
+    <ul class="d-flex flex-column justify-content-center">
+      <li class="d-flex justify-content-between">
+        <div class="guestDescription">
+          <h5>Adults</h5>
+          <p>Ages 13 and above</p>
+        </div>
+        <div class="guestAddRest d-flex inline-flex justify-content-between">
+          <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusAdultPath}}" (click)="addAdult()"/></div>
+          <h4 class="my-auto">{{numberOfAdults}}</h4>
+          <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusAdultPath}}" (click)="restAdult()"/></div>
+        </div>
+      </li>
+      <div width="100%" class="d-flex justify-content-center"><div class="guestLineSeparator"></div></div>
+      <li class="d-flex justify-content-between">
+        <div class="guestDescription">
+          <h5>Children</h5>
+          <p>Ages bellow 13</p>
+        </div>
+        <div class="guestAddRest d-flex inline-flex justify-content-between">
+          <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusChildrenPath}}" (click)="addChildren()"/></div>
+          <h4 class="my-auto">{{numberOfChildren}}</h4>
+          <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusChildrenPath}}" (click)="restChildren()"/></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="errorBannerWrapper makeHidden">
+  <div class="errorBanner d-flex justify-content-center">
+    <h4 class="text-center d-flex my-auto">{{errorMessage}}</h4>
+  </div>
+</div>
+
+
+</div>

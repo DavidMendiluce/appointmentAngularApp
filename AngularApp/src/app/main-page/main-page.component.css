@@ -1,0 +1,651 @@
+h1,h2,h3,h4,h5,h6,p,a {
+  font-family: 'Nunito', sans-serif;
+}
+
+.topBody {
+  height: 68vh;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.headerLogo div {
+  height: 50%;
+}
+
+.headerLogo img {
+  width: 15vh;
+  height: 6vh;
+  cursor: pointer;
+}
+
+.headerNav {
+  /*
+  -- Add to header animation --
+  background-color: white;
+  border-bottom: 1px solid rgba(240,240,240,1);
+  box-shadow: 0 4px 2px -2px rgba(230,230,230,0.5);*/
+  height: 8vh;
+}
+
+ul {
+  width: 70%;
+  margin-bottom: 0vh;
+  padding-left: 0vh;
+}
+
+li {
+  display: inline;
+}
+
+/*
+Change to searchbox on scroll
+.headerSearchBox {
+  border: 1px solid rgba(220,220,220,1) !important;
+  border-radius: 3vh;
+  width: 25vh;
+  height: 4.3vh;
+  box-shadow: 0 4px 2px -2px rgb(220, 220, 220);
+}
+
+#headerSearchContainer img {
+  position: relative;
+  right: 4vh;
+  bottom: 0.2vh;
+  width: 3.5vh;
+  height: 3.5vh;
+}*/
+
+.headerSearchBox {
+  position: relative;
+  top: 20vh;
+  border: 1px solid rgba(200,200,200,1) !important;
+  border-radius: 5vh;
+  width: 86vh;
+  height: 7vh;
+  box-shadow: 0 4px 2px -2px rgb(200, 200, 200);
+  background-color: white;
+}
+
+.headerSearchBoxMini {
+  position: relative;
+  top: 1vh;
+  border: 1px solid rgba(200,200,200,1) !important;
+  border-radius: 5vh;
+  width: 50vh;
+  height: 5vh;
+  box-shadow: 0 4px 2px -2px rgb(200, 200, 200);
+  background-color: white;
+}
+
+.lenses {
+  position: relative;
+  top: 0.63vh;
+  right: 0vh;
+  left: 3.5vh;
+  width: 5.5vh;
+  height: 5.5vh;
+  opacity: 0.8;
+}
+
+.lenses:hover {
+  opacity: 1;
+}
+
+#loginButtonContainer {
+  width: 15vh;
+}
+
+#loginButtonContainer img {
+  width: 3.5vh;
+  height: 3.5vh;
+}
+
+h5, p {
+  margin: 0 0;
+}
+
+.separator {
+  border-right: 1px solid rgba(230,230,230, 0.9);
+  height: 5vh;
+}
+
+.propertiesContainer {
+  margin-top: 3vh;
+}
+
+.propertyContainer {
+
+  width: 13vh;
+  height: 20vh;
+}
+
+.propertyImage {
+  width: 13vh;
+  height: 15vh;
+  border-radius: 5px;
+}
+
+.propertyImage:hover {
+  border: 0.3vh solid rgba(255, 234, 110,0.8);
+  border-radius: 1vh;
+  cursor: pointer;
+}
+
+.propertyDescription {
+
+  height: 5vh;
+  width: 13vh;
+}
+
+.headerSearchBox p, .headerSearchBox input::placeholder{
+  color: #929292;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+.placesContainer {
+  height: 50vh;
+  width: 100%;
+
+}
+
+.placesContainer img:hover {
+  cursor: pointer;
+  border: 0.3vh solid rgba(255, 234, 110,0.8);
+  border-radius: 1vh;;
+}
+
+.tallPlace {
+  height: 100%;
+  width: 40%;
+  border-radius: 0.5vh;
+}
+
+.rightSidePlacesContainer {
+  height: 100%;
+  width: 58%;
+}
+
+.squaredPlaces {
+  height: 55%;
+  width: 100%;
+  border-radius: 0.5vh;
+}
+
+.squarePlace {
+  height: 96%;
+  width: 48%;
+  border-radius: 0.5vh;
+}
+
+.largePlace {
+  height: 45%;
+  width: 100%;
+  border-radius: 0.5vh;
+}
+
+.sectionContainer {
+  margin-top: 5vh;
+}
+
+.placesContainer {
+  margin-top: 3vh;
+}
+
+.signUpBannerContainer {
+  width: 100%;
+  height: 20vh;
+  background-color: #FFEA6E;
+}
+
+.signUpBannerContainer h1 {
+  color: white;
+  font-weight: 700;
+  margin: 0 0;
+}
+
+.signUpBannerContainer input {
+  height: 3.5vh;
+  width: 30vh;
+  border-radius: 0.5vh;
+  border: 1px solid rgba(230,230,230,1);
+}
+
+input::placeholder {
+  font-family: 'Nunito', sans-serif;
+}
+
+.signUpBannerContainer a {
+  border: 1px solid rgba(260,260,260,1);
+  padding: 0.5vh 3vh;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(237, 223, 143,1);
+}
+
+.signUpBannerContainer a:hover {
+  background-color: rgb(121, 114, 72,0.5);
+  cursor: pointer;
+}
+
+.footerMainContainer {
+  height: 30vh;
+}
+
+.footerMainContainer p {
+  margin-top: 2vh;
+  font-weight: 300;
+
+}
+
+.footerMainContainer p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.locationSelector:hover, .checkInOutSelector:hover, .guestsSelector:hover {
+  border-radius: 5vh;
+  cursor: pointer;
+}
+
+.greyBackground {
+  background-color: #dbdbdb;
+}
+
+.transparentBackground {
+  background-color: transparent;
+}
+
+.lightGreyBackground {
+  background-color: #eeeded;
+}
+
+.whiteBackground {
+  background-color: white;
+}
+
+.guestsSelector {
+  width: 31vh;
+  padding-left: 3vh;
+}
+
+.checkInOutSelector {
+  width: 30vh;
+  padding-left: 3vh;
+}
+
+.locationSelector {
+  width: 25vh;
+  padding-left: 3vh;
+}
+
+.locationSelector input {
+  border: none;
+  width: 80%;
+}
+
+.locationSelector input:focus {
+  outline: none;
+}
+
+.roundedRight {
+  border-top-right-radius: 5vh;
+  border-bottom-right-radius: 5vh;
+}
+
+.roundedAll {
+  border-radius: 5vh;
+}
+
+#headerSearchContainer {
+  height: 50vh;
+}
+
+#headerSearchContainerMini {
+  height: 25vh;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+/*Ng-Bootstrap date picker*/
+
+ngb-datepicker {
+  position: relative;
+  top: 22vh;
+  left: 15vh;
+  background-color: white;
+  width: 60vh;
+  font-family: 'nunito', sans-serif;
+  border-radius: 2vh;
+  border: 1px solid #eeeeee;
+}
+
+#blackDate {
+  color: black !important;
+}
+
+.makeHidden {
+  display: none !important;
+}
+
+.cover {
+  display: none;
+}
+
+.makeVisible {
+  display: block !important;
+}
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5vh;
+}
+.custom-day.focused {
+  background-color: rgb(255, 234, 110);
+}
+.custom-day.range, .custom-day:hover {
+  background-color: rgb(255, 234, 110);
+  color: rgba(255, 56, 175);
+}
+.custom-day.faded {
+  background-color: rgba(255, 234, 110,0.5);
+  border-radius: 0vh;
+}
+
+.marginTwo {
+  margin: 2vh 2vh !important;
+}
+
+.ngb-dp-day  {
+  background-color: #eeeded !important;
+}
+
+.dateBlack {
+  color: black;
+}
+
+.dateGrey {
+  color: #eeeded !important;
+}
+
+/*Ng-Bootstrap date picker*/
+
+.dropdownGuests {
+  position: relative;
+  top: 21vh;
+  left: 55vh;
+  background-color: white;
+  border-radius: 2vh;
+  width: 30vh;
+  height: 13vh;
+  border: 1px solid #eeeeee;
+}
+
+.dropdownGuests h4 {
+  font-size: 1.5vh;
+}
+
+.dropdownGuests h5 {
+  font-size: 1.6vh;
+}
+
+.dropdownGuests p {
+  font-size: 1.2vh;
+  color: #929292;
+}
+
+.dropdownGuests ul {
+  width: 100%;
+  height: 13vh;
+}
+
+.guestAddRest {
+  width: 8vh;
+  margin-right: 1vh;
+
+}
+
+.guestAddRest img {
+  cursor: pointer;
+}
+
+.guestsPlusMinusImage{
+  width: 2vh !important;
+  height: 2vh !important;
+}
+
+
+.dropdownGuests li {
+  width: 100%;
+}
+
+.guestDescription {
+  margin-left: 2vh;
+}
+
+
+
+.guestLineSeparator {
+  width: 28vh;
+  height: 0vh;
+  border-bottom: 1px solid rgba(230,230,230, 0.9);
+  margin-top:  1vh;
+  margin-bottom: 1vh;
+}
+
+.loginBtnSubContainer {
+  width: 20vh;
+  height:  100%;
+}
+
+.loginImageContainer {
+  width: 20vh;
+  height: 8vh;
+
+}
+
+.loginImageContainer img {
+  cursor: pointer;
+  margin-top: 1.2vh;
+}
+
+.makeVisibleFlex {
+  display: flex;
+}
+
+.loginSignUpPopup {
+  width: 18vh;
+  height: 9vh;
+  border: 1px solid rgba(230,230,230, 0.9);
+  border-radius: 1vh;
+  position: relative;
+  bottom: 2vh;
+  left: 0vh;
+  background-color: white;
+}
+
+.loginLineSeparator {
+  border-top: 1px solid rgba(230,230,230, 0.9);
+}
+
+.loginWrapper {
+  height: 8vh;
+}
+
+.loginWrapper .loginTextWrap {
+  height: 100%;
+}
+
+.loginTextWrap h5 {
+  font-size: 1.6vh;
+  font-family: 'Nunito', sans-serif;
+  margin-left: 1vh;
+}
+
+.loginTextWrap:hover {
+  background-color: #eeeded;
+  cursor: pointer;
+}
+
+.signUpText {
+  font-weight: 600;
+}
+
+.logoutBtnWrapper {
+  display: none;
+}
+
+.loginBtnWrapper, .signupBtnWrapper, .logoutBtnWrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.logoutBtnWrapper .loginTextWrap {
+  height: 80%;
+}
+
+.errorBanner {
+  position: relative;
+  bottom: 220vh;
+  left: 34.5%;
+  width: 30%;
+  background-color: rgba(255, 163, 163,1);
+  border-radius: 1vh;
+  border: 1px solid rgba(230, 230, 230,1);
+  height: 4vh;
+}
+
+.errorBanner h4 {
+  color: rgba(230, 53, 53,1);
+  font-size: 18px;
+}
+
+.hideVisibility {
+  visibility: hidden;
+}
+
+.showVisibility {
+  visibility: visible;
+}
+
+.propertiesWrapper, .placesWrapper {
+  width: 50%;
+}
+
+.signupBannerWrapper {
+  width: 40%;
+}
+
+.footerMainWrapper {
+  width: 60%;
+}
+
+  .guestsSelectorText {
+  width: 18vh;
+  }
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+  .headerNav ul {
+    width: 90%;
+  }
+
+  .topBody {
+    height: 40vh;
+  }
+
+  .signupBannerWrapper h1 {
+    font-size: 4vh;
+  }
+
+  .headerSearchBox {
+    height: 9vh;
+    width: 105vh;
+  }
+
+  .locationSelector {
+    width: 30vh;
+  }
+
+  .checkInOutSelector {
+    width: 40vh;
+  }
+
+  .guestsSelector {
+    width: 35vh;
+  }
+
+  .guestsSelectorTextWrap {
+    width: 25vh;
+  }
+
+  .guestsSelectorText {
+    width: 26vh;
+  }
+
+  .lenses {
+    left: -1vh;
+    height: 7vh;
+    width: 7vh;
+  }
+
+  .propertiesWrapper h4 {
+    font-size: 3vh;
+    margin-top: 1vh;
+  }
+
+  ngb-datepicker {
+    width: 90vh;
+    left: 8vh;
+  }
+
+  .dropdownGuests {
+    height: 15vh;
+    width: 33vh;
+    left: 73vh;
+  }
+
+  .dropdownGuests ul {
+    height: 100%;
+    width: 95%;
+  }
+
+  .dropdownGuests h5 {
+    font-size: 2.3vh;
+  }
+
+  .dropdownGuests p {
+    font-size: 1.8vh;
+  }
+
+  .guestAddRest {
+    width: 10vh;
+  }
+
+  .guestAddRest h4 {
+    font-size: 2vh !important;
+  }
+
+  .guestAddRest img {
+    width: 3vh !important;
+    height: 3vh !important;
+  }
+
+  .headerLogo img {
+    width: 20vh;
+    height: 8vh;
+    cursor: pointer;
+  }
+
+}
+
+

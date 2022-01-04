@@ -1,0 +1,621 @@
+<div id="mainPageBody">
+
+    <div style="width: 100%;" class="headerNav d-flex justify-content-center">
+      <ul class="headerMainUl d-flex inline-flex justify-content-between">
+        <li class="headerLogo  my-auto">
+          <div class="d-flex justify-content-center"><img routerLink="/" class="my-auto" src="assets/img/logos/bookMeLogoLong.png"/></div>
+        </li>
+        <!--SearchBox-->
+        <li [@fadeInOut] id="headerSearchContainer"  class="my-auto">
+          <div (click)="resetHeaderSerarchBox()" class="headerSearchBox d-flex inline-flex">
+            <div (click)="removeSearchPops()" class="locationSelector d-flex flex-column justify-content-center">
+              <h5>Location</h5>
+              <input id="locationInput" list="countries" placeholder="Choose a location">
+              <datalist id="countries">
+                <option value="Paris">
+                <option value="Moscow">
+                <option value="New York">
+                <option value="Sydney">
+              </datalist>
+            </div>
+            <div class="lineSeparatorLocation separator align-self-center"></div>
+            <div (click)="popDatePicker()" class="checkInOutSelector d-flex flex-column justify-content-center">
+              <h5>Check-in and Check-out</h5>
+              <p>Add a date</p>
+            </div>
+            <div class="lineSeparatorCheckIn separator align-self-center"></div>
+            <div (click)="addGuests()" class=" guestsSelector d-flex inline-flex">
+              <div class="d-flex flex-column justify-content-center">
+                <h5>Guests</h5>
+                <p>Add guests</p>
+                <p class=" miniSearchLocation d-flex my-auto makeHidden" style="color: #929292">Choose a location</p>
+              </div>
+              <img class="lenses" (click)="searchMain()" src="{{lensImagePath}}"/>
+            </div>
+
+          </div>
+          <div class="datePickerContainer">
+            <ngb-datepicker class="makeHidden"  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" outsideDays="hidden">
+            </ngb-datepicker>
+
+            <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+          <div>
+            <div class="dropdownGuests makeHidden">
+              <ul class="d-flex flex-column justify-content-center">
+                <li class="d-flex justify-content-between">
+                  <div class="guestDescription">
+                    <h5>Adults</h5>
+                    <p>Ages 13 and above</p>
+                  </div>
+                  <div class="guestAddRest d-flex inline-flex justify-content-between">
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusAdultPath}}" (click)="addAdult()"/></div>
+                    <h4 class="my-auto">{{numberOfAdults}}</h4>
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusAdultPath}}" (click)="restAdult()"/></div>
+                  </div>
+                </li>
+                <div width="100%" class="d-flex justify-content-center"><div class="guestLineSeparator"></div></div>
+                <li class="d-flex justify-content-between">
+                  <div class="guestDescription">
+                    <h5>Children</h5>
+                    <p>Ages bellow 13</p>
+                  </div>
+                  <div class="guestAddRest d-flex inline-flex justify-content-between">
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusChildrenPath}}" (click)="addChildren()"/></div>
+                    <h4 class="my-auto">{{numberOfChildren}}</h4>
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusChildrenPath}}" (click)="restChildren()"/></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </li>
+
+        <li id="loginButtonContainer" class="my-auto d-flex justify-content-end">
+          <div class="loginBtnSubContainer d-flex flex-column justify-content-between">
+          <div class="loginImageContainer d-flex justify-content-end" ><img class="my-auto" (click)="showLoginSignUp()" src="assets/img/icons/hamburgerAfter.png" /></div>
+          <div class="makeHidden" id="loginSignupPopupWrapper">
+            <div width="100%" style="vertical-align: top;" class="d-flex justify-content-end">
+              <div class=" d-flex flex-column justify-content-center my-auto loginSignUpPopup">
+                <div class="loginWrapper d-flex flex-column justify-content-between">
+                  <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="signUpText d-flex my-auto text-center justify-content-start">SignUp</h5></div>
+                  <div class="loginLineSeparator"></div>
+                  <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="d-flex my-auto text-center justify-content-start">Login</h5></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+
+  <div (click)="miniHeader()" class="reservationDetailsContent d-flex justify-content-center">
+   <div class="reservationDetailsContainer">
+
+    <!--Title and Images showcase-->
+    <div class="imagesTopView">
+
+      <div class="imagesTopViewTop d-flex inline-flex justify-content-between">
+        <div class="topText">
+          <h3>{{this.locationsService.selectedLocation.title}}</h3>
+          <p>{{this.locationsService.selectedLocation.distanceFromCenter}} Km from city center</p>
+        </div>
+        <div class="scoreContainer">
+          <div class="d-flex justify-content-end">
+            <div class="scoreImage d-flex justify-content-end">
+              <img src="assets/img/icons/starCroped.png"/>
+              <h2 class="d-flex my-auto">{{this.locationsService.selectedLocation.score | number : '1.2-2' }}/</h2>
+              <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+            </div>
+          </div>
+          <div class="modalSearchReviews d-flex justify-content-end">
+            <h5>({{this.locationsService.selectedLocation.numberOfReviews}} reviews)</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="imagesShowcase d-flex inline-flex justify-content-between">
+        <img src="assets/img/images/{{this.locationsService.selectedLocation.imageMain}}" class="leftShowcase" />
+        <div class="rightShowcase d-flex flex-column justify-content-between">
+          <div class="rightShowcaseTop d-flex justify-content-end">
+            <img src="assets/img/images/{{this.locationsService.selectedLocation.imageShowcase3}}" />
+          </div>
+          <div class="rightShowcaseBottom  d-flex flex-column justify-content-end">
+            <div class="rightShowcaseBottomSubContainer d-flex justify-content-end">
+              <div class="rightShowcaseBottomSubInsideContainer d-flex justify-content-between">
+              <img src="assets/img/images/{{this.locationsService.selectedLocation.imageShowcase1}}" class="rightShowcaseBottomLeftImg"/>
+              <img src="assets/img/images/{{this.locationsService.selectedLocation.imageShowcase2}}"  class="rightShowcaseBottomRightImg"/>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="iconsShowcase d-flex inline-flex justify-content-between">
+        <div class="iconContainer d-flex flex-column justify-content-center">
+          <div class="iconImgContainer d-flex justify-content-center">
+            <img src="assets/img/icons/houseCropped.png" class="houseIcon d-flex my-auto"/>
+          </div>
+          <h5 class="d-flex justify-content-center">{{this.locationsService.selectedLocation.roomType}} / {{this.locationsService.selectedLocation.size}}m2</h5>
+        </div>
+        <div class="iconContainer d-flex flex-column justify-content-center">
+          <div class="iconImgContainer d-flex justify-content-center">
+            <img src="assets/img/icons/showerCropped.png" class="bathroomIcon d-flex my-auto"/>
+          </div>
+          <h5 class="d-flex justify-content-center">{{this.locationsService.selectedLocation.bathrooms}} Bathrooms</h5>
+        </div>
+        <div class="iconContainer d-flex flex-column justify-content-center">
+          <div class="iconImgContainer d-flex justify-content-center">
+            <img src="assets/img/icons/bedCropped.png" class="bedroomIcon d-flex my-auto"/>
+          </div>
+          <h5 class="d-flex justify-content-center">{{this.locationsService.selectedLocation.bedrooms}} Bedrooms</h5>
+        </div>
+        <div class="iconContainer d-flex flex-column justify-content-center">
+          <div class="iconImgContainer d-flex justify-content-center">
+            <img src="assets/img/icons/wifiCropped.png" class="wifiIcon d-flex my-auto"/>
+          </div>
+          <h5 class="d-flex justify-content-center">{{this.locationsService.selectedLocation.wifi}}</h5>
+        </div>
+        <div class="iconContainer d-flex flex-column justify-content-center">
+          <div class="iconImgContainer d-flex justify-content-center">
+            <img src="assets/img/icons/coffeeCropped.png" class="coffeeIcon d-flex my-auto"/>
+          </div>
+          <h5 class="d-flex justify-content-center">{{this.locationsService.selectedLocation.breakfast}}</h5>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="detailsSectionSeparator"></div>
+
+    <!--Text description and reservation Pop-up-->
+    <div class="descriptionView d-flex justify-content-between">
+      <div class="descriptionLeft">
+        <div class="descriptionText">
+          <h4>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Maecenas hendrerit gravida leo, at posuere est suscipit non.
+            Sed id enim turpis. Aenean sit amet augue aliquam, viverra diam quis,
+            aliquam urna. Sed sit amet gravida nisi. Aenean in augue quis felis
+            nterdum dignissim.  Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Nullam lacinia metus ac neque fermentum rhoncus. Vestibulum ante
+            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+            <br><br>
+            Vestibulum laoreet arcu odio, in vulputate purus tempus id. Morbi eget
+            odio mauris. In eget euismod urna. Nunc aliquam, erat at consectetur laoreet,
+            lorem velit accumsan  est, quis dapibus ligula ipsum vel augue. Ut vel lacus
+            sed arcu ullamcorper vehicula in sed libero. Morbi lacinia mi sed facilisis
+            interdum. Sed imperdiet aliquet pulvinar. Maecenas placerat nulla id eros commodo vehicula.
+          </h4>
+        </div>
+      </div>
+      <div class="descriptionRight d-flex flex-column justify-content-start">
+        <div class="reservationPopUpContainer d-flex justify-content-center">
+          <div class="reservationPopUp d-flex flex-column justify-content-start">
+            <div class="topReservationPopUp d-flex justify-content-between">
+              <div class="scoreContainer">
+                <div class="d-flex justify-content-end">
+                  <div class="scoreImage d-flex justify-content-end">
+                    <img src="assets/img/icons/starCroped.png"/>
+                    <h2 class="d-flex my-auto">{{this.locationsService.selectedLocation.score | number : '1.2-2' }}/</h2>
+                    <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+                  </div>
+                </div>
+
+                <div class="modalSearchReviews d-flex justify-content-start">
+                  <h5>({{this.locationsService.selectedLocation.numberOfReviews}} reviews)</h5>
+                </div>
+              </div>
+              <div class="priceContainer">
+                <div class="d-flex justify-content-center">
+                  <h2>{{this.locationsService.selectedLocation.price}}$/</h2><h4 class="d-flex flex-column justify-content-end">night</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="middlepReservationPopUp">
+              <div class="reservationSummary">
+                <div class="topReservationSummary d-flex justify-content-between">
+                  <div class="checkInSummary d-flex flex-column my-auto">
+                    <h6>CHECK-IN</h6>
+                    <p>{{this.checkInDate | date: 'mediumDate'}}</p>
+                  </div>
+                  <div class="summarySeparationLine"></div>
+                  <div class="checkOutSummary d-flex flex-column my-auto">
+                    <h6>CHECKOUT</h6>
+                    <p>{{this.checkOutDate | date: 'mediumDate'}}</p>
+                  </div>
+                </div>
+                <div class="bottomReservationSummary d-flex justify-content-between">
+                  <div class="guestsSummary d-flex flex-column my-auto">
+                    <h6>GUESTS</h6>
+                    <div class="d-flex justify-content-center">
+                    <p id="addAdultsText">{{this.adultGuests}} Adults</p>
+                    <p id="addGuestsSeparator" style="margin-left: 1vh; margin-right: 1vh"> - </p>
+                    <p id="addChildrensText">{{this.childrenGuests}} Childrens</p>
+                    </div>
+
+                  </div>
+                  <div class="arrowSummary d-flex flex-column justify-content-center">
+                    <img src="assets/img/icons/downArrowPng.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bottomReservationPopUp d-flex flex-column justify-content-center">
+              <div [routerLink]="['/form', placeId, this.locationsService.selectedLocation.price, this.city, this.locationsService.selectedLocation.roomType, this.checkInDate, this.checkOutDate, this.adultGuests, this.childrenGuests]" class="reserveBtn d-flex flex-column justify-content-center"><a class="text-center">Reserve</a></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="detailsSectionSeparator"></div>
+
+    <!--Surrounding area points of interest-->
+    <div class="surroundingsView">
+      <div class="surroundingHeader">
+        <h1>Apartment Surroundings</h1>
+      </div>
+      <div class="surroundingBody d-flex justify-content-between">
+        <div class="surroundingBodyLeft d-flex flex-column">
+          <div class="nearbyContainer d-flex flex-column justify-content-start">
+            <h2 class="surroundingTitle">What is nearby</h2>
+            <ul class="d-flex flex-column">
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Concert hall La Cigale</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Pigalle Square</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Le Trianon</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Nouvelle Eve</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+            </ul>
+          </div>
+          <div class="restaurantContainer d-flex flex-column justify-content-start">
+            <h2 class="surroundingTitle">Restaurants</h2>
+            <ul class="d-flex flex-column">
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Concert hall La Cigale</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Pigalle Square</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Le Trianon</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Nouvelle Eve</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+          </ul>
+          </div>
+        </div>
+        <div class="surroundingBodyRight">
+          <div class="monumentsContainer d-flex flex-column justify-content-start">
+            <h2 class="surroundingTitle">Monuments and museums</h2>
+            <ul class="d-flex flex-column">
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Concert hall La Cigale</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Pigalle Square</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Le Trianon</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+            </ul>
+          </div>
+          <div class="natureContainer d-flex flex-column justify-content-start">
+            <h2 class="surroundingTitle">Natural places</h2>
+            <ul class="d-flex flex-column">
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Pigalle Square</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Le Trianon</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+            </ul>
+          </div>
+          <div class="activitiesContainer d-flex flex-column justify-content-start">
+            <h2 class="surroundingTitle">Activities</h2>
+            <ul class="d-flex flex-column">
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Pigalle Square</p>
+                <p class="surroundingDistance">0,2Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+              <li class="surroundingContent d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between">
+                  <p class="surroundingData">Le Trianon</p>
+                <p class="surroundingDistance">0,4Km</p>
+                </div>
+              </li>
+              <li class="surroundingSeparator"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detailsSectionSeparator"></div>
+
+    <!--Reviews-->
+
+    <div class="reviewsView">
+      <div class="reviewsHeader">
+        <h1>Reviews</h1>
+      </div>
+      <div class="reviewsBody d-flex justify-content-between">
+        <div class="reviewsBodyLeft">
+          <div class="scoreContainer">
+            <div class="d-flex justify-content-start">
+              <div class="scoreImage d-flex justify-content-start">
+                <img src="assets/img/icons/starCroped.png"/>
+                <h2 class="d-flex my-auto">{{this.locationsService.selectedLocation.score | number : '1.2-2' }}/</h2>
+                <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+              </div>
+            </div>
+            <div class="modalSearchReviews d-flex justify-content-start">
+              <h5>{{this.locationsService.selectedLocation.numberOfReviews}} client reviews</h5>
+            </div>
+          </div>
+          <div class="scoreBarsContainer d-flex justify-content-between">
+            <ul class="reviewBarsText d-flex flex-column">
+              <li class="d-flex flex-column justify-content-center"><h5>Excelent</h5></li>
+              <li  class="d-flex flex-column justify-content-center"><h5>Very Good</h5></li>
+              <li  class="d-flex flex-column justify-content-center"><h5>Normal</h5></li>
+              <li  class="d-flex flex-column justify-content-center"><h5>Bad</h5></li>
+              <li  class="d-flex flex-column justify-content-center"><h5>Worse</h5></li>
+            </ul>
+            <ul class="reviewBarsBars">
+                <li class="d-flex justify-content-start">
+                  <div class="barWrapper d-flex flex-column justify-content-center">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="width: {{this.locationsService.selectedLocation.excelent}}%; background-color: #FFE30E;"></div>
+                  </div>
+                  </div>
+                <p  class="d-flex flex-column justify-content-center">{{this.locationsService.selectedLocation.excelent}}%</p>
+                </li>
+                <li class="d-flex justify-content-start">
+                  <div class="barWrapper d-flex flex-column justify-content-center">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="width: {{this.locationsService.selectedLocation.veryGood}}%; background-color: #FFE30E;"></div>
+                  </div>
+                  </div>
+                <p  class="d-flex flex-column justify-content-center">{{this.locationsService.selectedLocation.veryGood}}%</p>
+                </li>
+                <li class="d-flex justify-content-start">
+                  <div class="barWrapper d-flex flex-column justify-content-center">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="width: 5%; background-color: #FFE30E;"></div>
+                  </div>
+                  </div>
+                <p  class="d-flex flex-column justify-content-center">{{this.locationsService.selectedLocation.normal}}%</p>
+                </li>
+                <li class="d-flex justify-content-start">
+                  <div class="barWrapper d-flex flex-column justify-content-center">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="width: 3%; background-color: #FFE30E;"></div>
+                  </div>
+                  </div>
+                <p  class="d-flex flex-column justify-content-center">{{this.locationsService.selectedLocation.bad}}%</p>
+                </li>
+                <li class="d-flex justify-content-start">
+                  <div class="barWrapper d-flex flex-column justify-content-center">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="width: 2%; background-color: #FFE30E;"></div>
+                  </div>
+                  </div>
+                <p  class="d-flex flex-column justify-content-center">{{this.locationsService.selectedLocation.worse}}%</p>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <div class="reviewsBodyRight">
+          <div class="reviewsRightHeader d-flex justify-content-start">
+            <div class="reviewsSearchBox d-flex justify-content-between">
+              <input placeholder="Search for reviews" style="border: none;" >
+              <div class="">
+                <img src="assets/img/icons/lensWhite.png"/>
+              </div>
+            </div>
+          </div>
+          <div class="reviewsRightBody">
+
+            <!--Each review-->
+            <div class="clientReviewContainer">
+              <div class="surroundingSeparator d-flex flex-column"></div>
+                <div class="clientReviewHeader d-flex flex-column justify-content-center">
+                  <div class="d-flex justify-content-between">
+
+                    <div class="clientReviewIcon d-flex justify-content-start">
+                      <img src="assets/img/icons/userIconCropped.png"/>
+                        <h4 class="d-flex my-auto">Username1</h4>
+                    </div>
+
+                    <div class="scoreContainer d-flex my-auto">
+                      <div class="d-flex justify-content-end">
+                        <div class="scoreImage d-flex justify-content-end">
+                          <img class="d-flex my-auto" src="assets/img/icons/starCroped.png"/>
+                          <h2 class="d-flex my-auto">5,00/</h2>
+                          <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="clientReviewSubheader d-flex flex-column justify-content-center">
+                  <div class="clientReviewDate">
+                    <p>10 Oct, 2021</p>
+                  </div>
+                </div>
+                <div class="clientReviewDescription">
+                  <div class="clientHeader d-flex flex-column">
+                    <h4 class="d-flex my-auto">Title</h4>
+                  </div>
+                  <div class="clientBody">
+                    <p>Vestibulum laoreet arcu odio,
+                      in vulputate purus tempus id. Morbi eget odio mauris. In eget euismod urna.
+                      Nunc aliquam, erat at consectetur laoreet, lorem mmodo vehicula.</p>
+                  </div>
+                </div>
+            </div>
+
+            <div class="clientReviewContainer">
+              <div class="surroundingSeparator d-flex flex-column"></div>
+                <div class="clientReviewHeader d-flex flex-column justify-content-center">
+                  <div class="d-flex justify-content-between">
+
+                    <div class="clientReviewIcon d-flex justify-content-start">
+                      <img src="assets/img/icons/userIconCropped.png"/>
+                        <h4 class="d-flex my-auto">Username1</h4>
+                    </div>
+
+                    <div class="scoreContainer d-flex my-auto">
+                      <div class="d-flex justify-content-end">
+                        <div class="scoreImage d-flex justify-content-end">
+                          <img class="d-flex my-auto" src="assets/img/icons/starCroped.png"/>
+                          <h2 class="d-flex my-auto">5,00/</h2>
+                          <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="clientReviewSubheader d-flex flex-column justify-content-center">
+                  <div class="clientReviewDate">
+                    <p>10 Oct, 2021</p>
+                  </div>
+                </div>
+                <div class="clientReviewDescription">
+                  <div class="clientHeader d-flex flex-column">
+                    <h4 class="d-flex my-auto">Title</h4>
+                  </div>
+                  <div class="clientBody">
+                    <p>Vestibulum laoreet arcu odio,
+                      in vulputate purus tempus id. Morbi eget odio mauris. In eget euismod urna.
+                      Nunc aliquam, erat at consectetur laoreet, lorem mmodo vehicula.</p>
+                  </div>
+                </div>
+            </div>
+
+            <div class="clientReviewContainer">
+              <div class="surroundingSeparator d-flex flex-column"></div>
+                <div class="clientReviewHeader d-flex flex-column justify-content-center">
+                  <div class="d-flex justify-content-between">
+
+                    <div class="clientReviewIcon d-flex justify-content-start">
+                      <img src="assets/img/icons/userIconCropped.png"/>
+                        <h4 class="d-flex my-auto">Username1</h4>
+                    </div>
+
+                    <div class="scoreContainer d-flex my-auto">
+                      <div class="d-flex justify-content-end">
+                        <div class="scoreImage d-flex justify-content-end">
+                          <img class="d-flex my-auto" src="assets/img/icons/starCroped.png"/>
+                          <h2 class="d-flex my-auto">5,00/</h2>
+                          <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="clientReviewSubheader d-flex flex-column justify-content-center">
+                  <div class="clientReviewDate">
+                    <p>10 Oct, 2021</p>
+                  </div>
+                </div>
+                <div class="clientReviewDescription">
+                  <div class="clientHeader d-flex flex-column">
+                    <h4 class="d-flex my-auto">Title</h4>
+                  </div>
+                  <div class="clientBody">
+                    <p>Vestibulum laoreet arcu odio,
+                      in vulputate purus tempus id. Morbi eget odio mauris. In eget euismod urna.
+                      Nunc aliquam, erat at consectetur laoreet, lorem mmodo vehicula.</p>
+                  </div>
+                </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+
+  </div>

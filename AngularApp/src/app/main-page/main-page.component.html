@@ -1,0 +1,258 @@
+<div id="mainPageBody" (scroll)="onScroll($event)">
+   <!--Banner-->
+<div style="background-image: url(assets/img/images/mainPageBanner4.jpg)" class="topBody">
+  <div style="width: 100%;" class="headerNav d-flex justify-content-center">
+      <ul class="d-flex inline-flex justify-content-between">
+        <li class="headerLogo  my-auto">
+          <div class="d-flex justify-content-center"><img routerLink="/" class="my-auto" src="assets/img/logos/bookMeLogoLong.png"/></div>
+        </li>
+         <!--SearchBox-->
+        <li [@fadeInOut] id="headerSearchContainer"  class="my-auto">
+          <div (click)="resetHeaderSerarchBox()" class="headerSearchBox d-flex inline-flex">
+            <div (click)="removeSearchPops()" class="locationSelector d-flex flex-column justify-content-center">
+              <h5>Location</h5>
+              <input id="locationInput" list="countries" placeholder="Choose a location">
+              <datalist id="countries">
+                <option value="Paris">
+                <option value="Moscow">
+                <option value="NewYork">
+                <option value="Sydney">
+              </datalist>
+            </div>
+            <div class="lineSeparatorLocation separator align-self-center"></div>
+            <div (click)="popDatePicker()" class="checkInOutSelector d-flex flex-column justify-content-center">
+              <h5>Check-in and Check-out</h5>
+              <p id="addDateText">Add a date</p>
+            </div>
+            <div class="lineSeparatorCheckIn separator align-self-center"></div>
+            <div (click)="addGuests()" class=" guestsSelector d-flex inline-flex">
+              <div class="guestsSelectorTextWrap d-flex flex-column justify-content-center">
+                <h5>Guests</h5>
+                <div class="d-flex guestsSelectorText">
+                  <p id="addAdultsText">Add guests</p>
+                  <p class="hideVisibility" id="addGuestsSeparator" style="margin-left: 1vh; margin-right: 1vh"> - </p>
+                  <p class="hideVisibility" id="addChildrenText">Children</p>
+                </div>
+                <p class=" miniSearchLocation d-flex my-auto makeHidden" style="color: #929292">Choose a location</p>
+              </div>
+              <img class="lenses" (click)="searchMain()" src="{{lensImagePath}}"/>
+            </div>
+
+          </div>
+          <div>
+            <ngb-datepicker class="makeHidden"  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" outsideDays="hidden">
+            </ngb-datepicker>
+
+            <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+          <div>
+            <div class="dropdownGuests makeHidden">
+              <ul class="d-flex flex-column justify-content-center">
+                <li class="d-flex justify-content-between">
+                  <div class="guestDescription">
+                    <h5>Adults</h5>
+                    <p>Ages 13 and above</p>
+                  </div>
+                  <div class="guestAddRest d-flex inline-flex justify-content-between">
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusAdultPath}}" (click)="addAdult()"/></div>
+                    <h4 class="my-auto">{{numberOfAdults}}</h4>
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusAdultPath}}" (click)="restAdult()"/></div>
+                  </div>
+                </li>
+                <div width="100%" class="d-flex justify-content-center"><div class="guestLineSeparator"></div></div>
+                <li class="d-flex justify-content-between">
+                  <div class="guestDescription">
+                    <h5>Children</h5>
+                    <p>Ages bellow 13</p>
+                  </div>
+                  <div class="guestAddRest d-flex inline-flex justify-content-between">
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusChildrenPath}}" (click)="addChildren()"/></div>
+                    <h4 class="my-auto">{{numberOfChildren}}</h4>
+                    <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusChildrenPath}}" (click)="restChildren()"/></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </li>
+
+        <li id="loginButtonContainer" class="my-auto d-flex justify-content-end">
+          <div class="loginBtnSubContainer d-flex flex-column justify-content-between">
+          <div class="loginImageContainer d-flex justify-content-end" ><img class="my-auto" (click)="showLoginSignUp()" src="assets/img/icons/hamburgerAfter.png" /></div>
+          <div class="makeHidden" id="loginSignupPopupWrapper">
+            <div width="100%" style="vertical-align: top;" class="d-flex justify-content-end">
+              <div class=" d-flex flex-column justify-content-center my-auto loginSignUpPopup">
+                <div class="loginWrapper d-flex flex-column justify-content-between">
+                  <div class="signupBtnWrapper"><div [routerLink]="['/signup']" class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="signUpText d-flex my-auto text-center justify-content-start">SignUp</h5></div></div>
+                  <div class="loginLineSeparator"></div>
+                  <div class="loginBtnWrapper"><div [routerLink]="['/login']" class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="d-flex my-auto text-center justify-content-start">Login</h5></div></div>
+                 <div class="logoutBtnWrapper d-flex flex-column justify-content-center"> <div (click)="onLogout()"  class=" loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="signUpText d-flex my-auto text-center justify-content-start">Logout</h5></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+  </div>
+
+  <!--Browse properties-->
+  <div class="sectionContainer d-flex justify-content-center" style="width: 100%;">
+    <div class="propertiesWrapper d-flex flex-column">
+      <h2 class="text-start">Browser Properties</h2>
+      <div class="propertiesContainer d-flex justify-content-between">
+        <div (click)="searchType('Apartment')" class="propertyContainer d-flex flex-column justify-content-between">
+          <img class="propertyImage" src="assets/img/images/apartmentSquared.jpg"/>
+          <div class="propertyDescription d-flex flex-column justify-content-center"><h4 class="text-center">Apartment</h4></div>
+        </div>
+        <div (click)="searchType('Villa')" class="propertyContainer d-flex flex-column justify-content-between">
+          <img class="propertyImage" src="assets/img/images/villaSquared.jpg"/>
+          <div class="propertyDescription d-flex flex-column justify-content-center"><h4 class="text-center">Villa</h4></div>
+        </div>
+        <div (click)="searchType('Resort')" class="propertyContainer d-flex flex-column justify-content-between">
+          <img class="propertyImage" src="assets/img/images/resortSquared.jpg"/>
+          <div class="propertyDescription d-flex flex-column justify-content-center"><h4 class="text-center">Resort</h4></div>
+        </div>
+        <div (click)="searchType('Cabin')" class="propertyContainer d-flex flex-column justify-content-between">
+          <img class="propertyImage" src="assets/img/images/cabinSquared.jpg"/>
+          <div class="propertyDescription d-flex flex-column justify-content-center"><h4 class="text-center">Cabin</h4></div>
+        </div>
+        <div (click)="searchType('Hotel')" class="propertyContainer d-flex flex-column justify-content-between">
+          <img class="propertyImage" src="assets/img/images/hotelSquared.jpg"/>
+          <div class="propertyDescription d-flex flex-column justify-content-center"><h4 class="text-center">Hotel</h4></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Explore new places-->
+  <div class="sectionContainer d-flex justify-content-center" style="width: 100%;">
+    <div class="placesWrapper d-flex flex-column">
+      <h2 class="text-start">Explore New Places</h2>
+      <div class="placesContainer d-flex inline-flex justify-content-between">
+        <img (click)="searchCountry('Paris')" src="assets/img/images/parisCroped2.jpg" class="tallPlace"/>
+        <div class="rightSidePlacesContainer">
+          <div class="squaredPlaces d-flex justify-content-between">
+            <img (click)="searchCountry('NewYork')" src="assets/img/images/newYorkLetter.jpg" class="squarePlace"/>
+            <img (click)="searchCountry('Moscow')" src="assets/img/images/moscowLetters.jpg" class="squarePlace"/>
+          </div>
+          <img (click)="searchCountry('Sydney')" src="assets/img/images/sydneyLetters.jpg" class="largePlace"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--SignUp banner-->
+  <div class="signUpBannerContainer sectionContainer d-flex justify-content-center" style="width: 100%;">
+    <div class="signupBannerWrapper my-auto d-flex flex-column justify-content-between" style="height: 80%;">
+    <div style="height: 100%;" class="d-flex flex-column justify-content-center">
+      <div class="d-flex flex-column justify-content-end"><h1 class="text-center">Sign Up to get the best deals</h1></div>
+    </div>
+    <div style="height: 100%;" class="d-flex flex-column justify-content-center">
+      <div class="d-flex justify-content-center" style="width: 100%;"><input placeholder=" Your email"></div>
+    </div>
+    <div style="height: 100%;" class="d-flex flex-column justify-content-center">
+      <div class="d-flex justify-content-center" style="width: 100%;"><a>Subscribe</a></div>
+    </div>
+    </div>
+  </div>
+
+  <!--Footer Main Page-->
+  <div class="footerMainContainer sectionContainer d-flex justify-content-center" style="width: 100%;">
+    <div class="footerMainWrapper d-flex justify-content-between">
+      <ul class="d-flex justify-content-center">
+        <div><li>
+          <h5>About</h5>
+        </li>
+        <li>
+          <p>Jobs</p>
+        </li>
+        <li>
+          <p>List your property</p>
+        </li>
+        <li>
+          <p>Partnership</p>
+        </li>
+        <li>
+          <p>News</p>
+        </li>
+        <li>
+          <p>Advertising</p>
+        </li></div>
+      </ul>
+      <ul class="d-flex justify-content-center">
+        <div ><li>
+          <h5>Explore</h5>
+        </li>
+        <li>
+          <p>Unique place to stay</p>
+        </li>
+        <li>
+          <p>All destinations</p>
+        </li>
+        <li>
+          <p>Discover</p>
+        </li>
+        <li>
+          <p>Travel communities</p>
+        </li></div>
+      </ul>
+      <ul class="d-flex justify-content-center">
+        <div ><li>
+          <h5>Host</h5>
+        </li>
+        <li>
+          <p>Host your home</p>
+        </li>
+        <li>
+          <p>Host an experience</p>
+        </li>
+        <li>
+          <p>Resource centre</p>
+        </li>
+        <li>
+          <p>Community centre</p>
+        </li></div>
+      </ul>
+      <ul class="d-flex justify-content-center">
+        <div ><li>
+          <h5>Support</h5>
+        </li>
+        <li>
+          <p>Coronavirus (Covid-19) FAQs</p>
+        </li>
+        <li>
+          <p>Terms and conditions</p>
+        </li>
+        <li>
+          <p>Help centre</p>
+        </li>
+        <li>
+          <p>Cancelation options</p>
+        </li>
+        <li>
+          <p>Contact</p>
+        </li></div>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="errorBannerWrapper cover">
+    <div class="errorBanner d-flex justify-content-center">
+      <h4 class="text-center d-flex my-auto">{{errorMessage}}</h4>
+    </div>
+  </div>
+
+ </div>
+

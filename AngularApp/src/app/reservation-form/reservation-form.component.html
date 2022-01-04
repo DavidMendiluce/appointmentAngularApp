@@ -1,0 +1,294 @@
+<div id="mainPageBody">
+
+<div style="width: 100%;" class="headerNav d-flex justify-content-center">
+  <ul class="headerMainUl d-flex inline-flex justify-content-between">
+    <li class="headerLogo  my-auto">
+      <div class="d-flex justify-content-center"><img routerLink="/" class="my-auto" src="assets/img/logos/bookMeLogoLong.png"/></div>
+    </li>
+    <!--SearchBox-->
+    <li [@fadeInOut] id="headerSearchContainer"  class="my-auto">
+      <div (click)="resetHeaderSerarchBox()" class="headerSearchBox d-flex inline-flex">
+        <div (click)="removeSearchPops()" class="locationSelector d-flex flex-column justify-content-center">
+          <h5>Location</h5>
+          <input id="locationInput" list="countries" placeholder="Choose a location">
+          <datalist id="countries">
+            <option value="Paris">
+            <option value="Moscow">
+            <option value="New York">
+            <option value="Sydney">
+          </datalist>
+        </div>
+        <div class="lineSeparatorLocation separator align-self-center"></div>
+        <div (click)="popDatePicker()" class="checkInOutSelector d-flex flex-column justify-content-center">
+          <h5>Check-in and Check-out</h5>
+          <p>Add a date</p>
+        </div>
+        <div class="lineSeparatorCheckIn separator align-self-center"></div>
+        <div (click)="addGuests()" class=" guestsSelector d-flex inline-flex">
+          <div class="d-flex flex-column justify-content-center">
+            <h5>Guests</h5>
+            <p>Add guests</p>
+            <p class=" miniSearchLocation d-flex my-auto makeHidden" style="color: #929292">Choose a location</p>
+          </div>
+          <img class="lenses" (click)="searchMain()" src="{{lensImagePath}}"/>
+        </div>
+
+      </div>
+      <div class="datePickerContainer">
+        <ngb-datepicker class="makeHidden"  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" outsideDays="hidden">
+        </ngb-datepicker>
+
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>
+      <div>
+        <div class="dropdownGuests makeHidden">
+          <ul class="d-flex flex-column justify-content-center">
+            <li class="d-flex justify-content-between">
+              <div class="guestDescription">
+                <h5>Adults</h5>
+                <p>Ages 13 and above</p>
+              </div>
+              <div class="guestAddRest d-flex inline-flex justify-content-between">
+                <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusAdultPath}}" (click)="addAdult()"/></div>
+                <h4 class="my-auto">{{numberOfAdults}}</h4>
+                <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusAdultPath}}" (click)="restAdult()"/></div>
+              </div>
+            </li>
+            <div width="100%" class="d-flex justify-content-center"><div class="guestLineSeparator"></div></div>
+            <li class="d-flex justify-content-between">
+              <div class="guestDescription">
+                <h5>Children</h5>
+                <p>Ages bellow 13</p>
+              </div>
+              <div class="guestAddRest d-flex inline-flex justify-content-between">
+                <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusChildrenPath}}" (click)="addChildren()"/></div>
+                <h4 class="my-auto">{{numberOfChildren}}</h4>
+                <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusChildrenPath}}" (click)="restChildren()"/></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </li>
+
+    <li id="loginButtonContainer" class="my-auto d-flex justify-content-end">
+      <div class="loginBtnSubContainer d-flex flex-column justify-content-between">
+      <div class="loginImageContainer d-flex justify-content-end" ><img class="my-auto" (click)="showLoginSignUp()" src="assets/img/icons/hamburgerAfter.png" /></div>
+      <div class="makeHidden" id="loginSignupPopupWrapper">
+        <div width="100%" style="vertical-align: top;" class="d-flex justify-content-end">
+          <div class=" d-flex flex-column justify-content-center my-auto loginSignUpPopup">
+            <div class="loginWrapper d-flex flex-column justify-content-between">
+              <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="signUpText d-flex my-auto text-center justify-content-start">SignUp</h5></div>
+              <div class="loginLineSeparator"></div>
+              <div class="loginTextWrap d-flex my-auto text-center justify-content-center"><h5 style="width: 100%;" class="d-flex my-auto text-center justify-content-start">Login</h5></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+</div>
+
+<div (click)="miniHeader()" class="reservationFormBody d-flex justify-content-center">
+
+
+<div class="reservationDetailsContent d-flex flex-column">
+  <!--Place Modal -->
+  <div class="searchModalContainer d-flex inline-flex justify-content-center">
+    <div class="searchModal d-flex justify-content-center">
+      <div class="searchModalSubContainer d-flex my-auto">
+        <div class="searchModalLeft d-flex justify-content-start">
+          <img class="my-auto" src="assets/img/images/{{this.locationsService.selectedLocation.imageMain}}" />
+        </div>
+        <div class="searchModalCenter my-auto">
+          <div class="searchModalTopText">
+            <h3>{{this.locationsService.selectedLocation.title}}</h3>
+            <p>{{this.locationsService.selectedLocation.distanceFromCenter}} Km from city center</p>
+          </div>
+          <div class="searchModalBottomText">
+            <h5>{{this.locationsService.selectedLocation.roomType | titlecase}}</h5>
+            <p>{{this.locationsService.selectedLocation.roomType | titlecase}} • {{this.locationsService.selectedLocation.bedrooms}} Bedroom • {{this.locationsService.selectedLocation.bathrooms}} Bathroom • {{this.locationsService.selectedLocation.size}}m2 • {{this.locationsService.selectedLocation.wifi}} • {{this.locationsService.selectedLocation.breakfast}}</p>
+          </div>
+        </div>
+        <div class="searchModalRight d-flex flex-column justify-content-between my-auto">
+          <div class="priceContainer">
+            <div class="d-flex justify-content-end">
+              <h2>{{this.locationsService.selectedLocation.price}}$/</h2><h4 class="d-flex flex-column justify-content-end">night</h4>
+            </div>
+          </div>
+          <div class="scoreContainer">
+            <div class="d-flex justify-content-end">
+              <div class="scoreImage d-flex justify-content-end">
+                <img src="assets/img/icons/starCroped.png"/>
+                <h2 class="d-flex my-auto">{{this.locationsService.selectedLocation.score}}/</h2>
+                <div class="d-flex flex-column justify-content-end my-auto"><h4 class="d-flex flex-column justify-content-end align-items-end text-bottom">5</h4></div>
+              </div>
+            </div>
+
+            <div class="modalSearchReviews d-flex justify-content-end">
+              <h5>({{this.locationsService.selectedLocation.numberOfReviews}} Reviews)</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="descriptionSectionSeparator"></div>
+
+  <div class="reservationFormForm">
+    <h2>Enter your Details</h2>
+    <div class="enterDetailsContainer d-flex justify-content-end">
+      <div class="enterDetailsWrapper">
+        <div class="enterDetailsFragment d-flex flex-column justify-content-start">
+          <div class="requiredInfo d-flex flex-column justify-content-center">
+            <p>Fill the <strong>*</strong> required info</p>
+          </div>
+        </div>
+        <div class="nameFragment enterDetailsFragment">
+          <div class="formFieldsWrapper d-flex justify-content-between">
+            <div>
+              <h5><b>First Name</b><strong>*</strong></h5>
+              <div class="inputBorder d-flex justify-content-center">
+                <input id="nameInput">
+              </div>
+            </div>
+
+            <div>
+              <h5><b>Last Name</b><strong>*</strong></h5>
+              <div class="inputBorder d-flex justify-content-center">
+                <input id="surnameInput">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="enterDetailsFragment">
+          <div class="formFieldsWrapper d-flex justify-content-between">
+            <div>
+              <h5><b>Email Adress</b><strong>*</strong></h5>
+              <div class="inputBorder d-flex justify-content-center">
+                <input id="emailInput">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="enterDetailsFragment">
+          <div class="formFieldsWrapper d-flex justify-content-between">
+            <div>
+              <h5><b>Confirm Email Adress</b><strong>*</strong></h5>
+              <div class="inputBorder d-flex justify-content-center">
+                <input id="emailConfirmationInput">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="enterDetailsFragment">
+          <div class="formFieldsWrapper d-flex justify-content-between">
+            <div>
+              <h5><b>Phone Number</b></h5>
+              <div class="inputBorder d-flex justify-content-center">
+                <input id="phoneInput">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="formSeparator"></div>
+    <h2>Arrival Time</h2>
+    <div class="arrivalContainer d-flex justify-content-end">
+      <div class="arrivalWrapper">
+        <div class="topArrival d-flex flex-column justify-content-center">
+          <div class="hourContainer d-flex justify-content-start">
+            <img src="assets/img/icons/clockCropped.png"/>
+            <p class="d-flex my-auto">You can check in at 12:00 A.M.</p>
+          </div>
+        </div>
+        <div class="bottomArrival d-flex flex-column justify-content-start">
+          <div class="enterDetailsFragment">
+            <div class="formFieldsWrapper d-flex justify-content-between">
+              <div>
+                <h5><b>Estimated Arrival Time</b><strong>*</strong></h5>
+                <div class="inputBorder d-flex justify-content-center">
+                  <input id="arrivalInput">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="formSeparator"></div>
+    <h2>Add Extras</h2>
+    <div class="extrasContainer d-flex justify-content-center">
+      <div class="extrasWrapper d-flex flex-column">
+        <div class="extrasTop d-flex justify-content-between">
+          <div class="leftTopExtra d-flex flex-column justify-content-start">
+            <div class="checkBox d-flex justify-content-start">
+              <input id="taxiInput" class="d-flex align-self-end" (click)="changeStatusTaxi()" type="checkbox">
+              <h4 class="d-flex align-self-end">Do you want to book a taxi in advance</h4>
+            </div>
+            <div class="checkBox textTaxi d-flex justify-content-start">
+              <input style="visibility: hidden;">
+              <p class="d-flex my-auto">You can get a taxi to pick you at the airport or the sation as well
+                as getting you from the airport or sation.
+              </p>
+            </div>
+          </div>
+          <div class="rightTopExtra d-flex flex-column justify-content-center">
+            <img src="assets/img/icons/taxiCropped.png" />
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="extrasSeparator"></div>
+        </div>
+        <div class="extrasTop extrasBottom d-flex justify-content-between">
+          <div class="leftTopExtra d-flex flex-column justify-content-start">
+            <div class="checkBox d-flex justify-content-start">
+              <input id="carRentInput" class="d-flex align-self-end" (click)="changeStatusCarRent()" type="checkbox">
+              <h4 class="d-flex align-self-end">Are you interested in renting a car</h4>
+            </div>
+            <div class="checkBox d-flex justify-content-start">
+              <input style="visibility: hidden;">
+              <p class="d-flex my-auto">You can hire a rental car and will be delivered to the airport, station or parking lot of the apartment.
+              </p>
+            </div>
+          </div>
+          <div class="rightTopExtra d-flex flex-column justify-content-center">
+            <img src="assets/img/icons/carRentalCrop.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="confirmReserveBtn d-flex flex-column justify-content-center">
+      <div class="d-flex justify-content-center" style="width: 100%; height: 100%;">
+        <div (click)="onSubmit()" class="reserveBtn my-auto d-flex flex-column justify-content-center"><a class="text-center">Reserve</a></div>
+      </div>
+
+    </div>
+  </div>
+
+ </div>
+
+</div>
+
+<div class="errorBannerWrapper">
+  <div class="errorBanner d-flex justify-content-center">
+    <h4 class="text-center d-flex my-auto">{{errorMessage}}</h4>
+  </div>
+</div>
+
+

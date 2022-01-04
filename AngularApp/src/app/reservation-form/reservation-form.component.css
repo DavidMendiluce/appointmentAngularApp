@@ -1,0 +1,329 @@
+.scoreImage {
+  width: 60% !important;
+}
+
+.descriptionSectionSeparator {
+  height: 10vh !important;
+}
+
+.reservationDetailsContent {
+  width: 55% !important;
+  top: 10vh !important;
+  height: 100% !important;
+}
+
+.reservationFormBody {
+  height: 200vh;
+}
+
+.searchModalContainer {
+  width: 100%;
+  height: 30vh;
+  margin-top: 2vh;
+  cursor: default;
+}
+
+.searchModal {
+  width: 95%;
+  height: 100%;
+  border: 1px solid rgba(217, 217, 217);
+  border-radius: 2vh;
+}
+
+.searchModalSubContainer {
+  width: 95%;
+  height: 90%;
+}
+
+.searchModalLeft {
+  width: 30%;
+}
+
+.searchModalLeft img {
+  width: 90%;
+  height: 95%;
+  border-radius: 1vh;
+}
+
+.searchModalCenter {
+  width: 45%;
+  height: 95%;
+  margin-left: 1vh;
+}
+
+.searchModalRight {
+  width: 25%;
+  height: 95%;
+}
+
+.searchModalTopText h3 {
+  margin-bottom: 0;
+  font-size: 2.6vh;
+}
+
+.searchModalTopText p {
+  color: #C8C8C8;
+  font-size: 1.5vh;
+}
+
+.searchModalBottomText {
+  margin-top: 5vh;
+}
+
+.searchModalBottomText h5 {
+  margin-bottom: 1vh;
+  font-weight: bold;
+}
+
+.searchModalBottomText p {
+  font-size: 1.2vh;
+}
+
+.scoreContainer h2 {
+  margin-left: 1vh;
+}
+
+.reservationFormForm {
+  height: 120vh;
+  width: 100%;
+}
+
+.formSeparator {
+  height: 5%;
+}
+
+.enterDetailsContainer, .arrivalContainer, .extrasContainer {
+  background-color: #FFF7C9;
+}
+
+.enterDetailsContainer {
+  height: 50%;
+}
+
+.enterDetailsWrapper {
+  height: 100%;
+  width: 97%;
+}
+
+.arrivalContainer {
+  height: 18%;
+}
+
+.extrasContainer {
+  height: 20%;
+}
+
+.confirmReserveBtn {
+  height: 10%;
+}
+
+.enterDetailsFragment {
+  width: 100%;
+  height: 20%;
+}
+
+.enterDetailsFragment strong {
+  color: #FF38AF;
+}
+
+.requiredInfo {
+  height: 50%;
+}
+
+.requiredInfo p {
+  font-size: 18px;
+}
+
+.requiredInfo p strong {
+  font-size: 20px;
+  color: #FF38AF;
+}
+
+.nameFragment .inputBorder {
+  margin-top: 1vh;
+  border: 1px solid #D0D0D0;
+  border-radius: 0.5vh;
+  background-color: white;
+  height: 3.5vh;
+  width: 24vh;
+}
+
+.inputBorder {
+  margin-top: 1vh;
+  border: 1px solid #D0D0D0;
+  border-radius: 0.5vh;
+  background-color: white;
+  height: 3.5vh;
+  width: 40vh;
+}
+
+input {
+  width: 80%;
+}
+
+.formFieldsWrapper {
+  width: 50%;
+}
+
+.formFieldsWrapper input {
+  outline: none;
+  border: none;
+  width: 90%;
+}
+
+.arrivalWrapper {
+  width: 97%;
+  height: 100%;
+}
+
+.topArrival {
+  height: 47%;
+}
+
+.bottomArrival {
+  height: 50%;
+}
+
+.hourContainer p {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.hourContainer img {
+  width: 4vh;
+  height: 4vh;
+  margin-right: 1vh;
+}
+
+.extrasWrapper {
+  width: 94%;
+}
+
+.extrasTop {
+  height: 50%;
+}
+
+.extrasBottom {
+  height: 50%;
+}
+
+.reserveBtn {
+  background-color: #FFF186;
+  width: 20% !important;
+  height: 35% !important;
+  border-radius: 0.5vh;
+}
+
+.reserveBtn:hover {
+  background-color: #ffee69;
+  cursor: pointer;
+}
+
+.reserveBtn a{
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 2vh;
+  text-decoration: none;
+  color: #FF38AF;
+}
+
+.extrasSeparator {
+  width: 95%;
+  border: 1px solid #D4D4D4;
+}
+
+.leftTopExtra {
+  width: 80%;
+}
+
+.leftTopExtra h4 {
+  font-weight: 600;
+  font-size: 2.5vh;
+  margin-bottom: -0.4vh;
+}
+
+.checkBox {
+  width: 100%;
+  height: 100%;
+}
+
+.checkBox input {
+  height: 2.5vh;
+  width: 2.5vh;
+  border: 1px solid #ECECEC;
+  border-radius: 3px;
+  background-color: white;
+  -webkit-appearance: none;
+  margin-right: 1vh;
+}
+
+.visibleCheck {
+  -webkit-appearance: auto !important;
+}
+
+.hideCheck {
+  -webkit-appearance: none !important;
+}
+
+.rightTopExtra {
+  height: 100%;
+}
+
+.rightTopExtra img {
+  width: 5vh;
+  height: 5vh;
+}
+
+.extrasBottom {
+  height: 40% !important;
+}
+
+.textTaxi {
+  width: 100%;
+}
+
+.errorBannerWrapper {
+  display: none;
+}
+
+.errorBanner {
+  position: relative;
+  bottom: 0vh !important;
+  left: 34.5%;
+  width: 30%;
+  background-color: rgba(255, 163, 163,1);
+  border-radius: 1vh;
+  border: 1px solid rgba(230, 230, 230,1);
+  height: 4vh;
+}
+
+.errorBanner h4 {
+  color: rgba(230, 53, 53,1);
+  font-size: 18px;
+}
+
+.lenses {
+  left: 12vh;
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .searchModalTopText h3 {
+    font-size: 3.5vh;
+  }
+
+  .searchModalTopText p {
+    font-size: 1.8vh;
+  }
+
+  .searchModalBottomText p {
+    font-size: 1.8vh;
+  }
+
+  .leftTopExtra {
+    margin-bottom: 1vh;
+  }
+
+  .extrasContainer {
+    height: 25%;
+  }
+}

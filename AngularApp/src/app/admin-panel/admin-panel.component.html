@@ -1,0 +1,156 @@
+
+<div id="mainPageBody">
+  <!--Header-->
+<div class="headerSearchWrapper">
+ <div style="width: 100%;" class="headerNav d-flex justify-content-center">
+     <ul style="width: 95%" class="d-flex inline-flex justify-content-between">
+       <li class="headerLogo">
+         <div style="height: 100%;" class="d-flex justify-content-start my-auto">
+           <img routerLink="/" class="my-auto" src="assets/img/logos/bookMeLogoLong.png"/>
+           <div class="adminHeaderText d-flex flex-column justify-content-center">
+            <h1>DASHBOARD</h1>
+           </div>
+
+         </div>
+       </li>
+
+       <li id="loginButtonContainer" class="my-auto d-flex flex-column justify-content-center">
+           <h3>Logout</h3>
+       </li>
+     </ul>
+ </div>
+ </div>
+
+
+
+<div class="datePickerWrapper">
+<ngb-datepicker class="makeHidden"  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" outsideDays="hidden">
+</ngb-datepicker>
+
+<ng-template #t let-date let-focused="focused">
+ <span class="custom-day"
+       [class.focused]="focused"
+       [class.range]="isRange(date)"
+       [class.faded]="isHovered(date) || isInside(date)"
+       (mouseenter)="hoveredDate = date"
+       (mouseleave)="hoveredDate = null">
+   {{ date.day }}
+ </span>
+</ng-template>
+</div>
+
+<div class="dropdownGuestsWrapper">
+<div class="dropdownGuests makeHidden">
+ <ul class="d-flex flex-column justify-content-center">
+   <li class="d-flex justify-content-between">
+     <div class="guestDescription">
+       <h5>Adults</h5>
+       <p>Ages 13 and above</p>
+     </div>
+     <div class="guestAddRest d-flex inline-flex justify-content-between">
+       <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusAdultPath}}" (click)="addAdult()"/></div>
+       <h4 class="my-auto">{{numberOfAdults}}</h4>
+       <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusAdultPath}}" (click)="restAdult()"/></div>
+     </div>
+   </li>
+   <div width="100%" class="d-flex justify-content-center"><div class="guestLineSeparator"></div></div>
+   <li class="d-flex justify-content-between">
+     <div class="guestDescription">
+       <h5>Children</h5>
+       <p>Ages bellow 13</p>
+     </div>
+     <div class="guestAddRest d-flex inline-flex justify-content-between">
+       <div class="my-auto"><img class="guestsPlusMinusImage" src="{{plusChildrenPath}}" (click)="addChildren()"/></div>
+       <h4 class="my-auto">{{numberOfChildren}}</h4>
+       <div class="my-auto"><img class="guestsPlusMinusImage" src="{{minusChildrenPath}}" (click)="restChildren()"/></div>
+     </div>
+   </li>
+ </ul>
+</div>
+</div>
+
+  <div class="adminBody">
+    <div class="adminTopBody d-flex justify-content-between">
+      <div class="adminAvailable adminRectangle my-auto d-flex flex-column justify-content-center">
+        <div class="rectangleTop d-flex flex-column justify-content-center">
+          <div class="topRectangleWrapper d-flex justify-content-between">
+            <img class="d-flex my-auto" src="assets/img/icons/roomKeyCroppedFinal.png" />
+            <h1 class="d-flex my-auto">7</h1>
+          </div>
+        </div>
+        <div class="rectangleBottom d-flex justify-content-end">
+          <h2 class="d-flex my-auto">Available Rooms</h2>
+        </div>
+      </div>
+      <div class="adminConfirmed adminRectangle my-auto d-flex flex-column justify-content-center">
+        <div class="rectangleTop d-flex flex-column justify-content-center">
+          <div class="topRectangleWrapper d-flex justify-content-between">
+            <img class="d-flex my-auto" src="assets/img/icons/listBookedCropped.png" />
+            <h1 class="d-flex my-auto">2</h1>
+          </div>
+        </div>
+        <div class="rectangleBottom d-flex justify-content-end">
+          <h2 class="d-flex my-auto">Cofirmed Bookings</h2>
+        </div>
+      </div>
+      <div class="adminTypes adminRectangle my-auto d-flex flex-column justify-content-center">
+        <div class="rectangleTop d-flex flex-column justify-content-center">
+          <div class="topRectangleWrapper d-flex justify-content-between">
+            <img class="d-flex my-auto" src="assets/img/icons/roomTypeCropped.png" />
+            <h1 class="d-flex my-auto">4</h1>
+          </div>
+        </div>
+        <div class="rectangleBottom d-flex justify-content-end">
+          <h2 class="d-flex my-auto">Room Types</h2>
+        </div>
+      </div>
+    </div>
+    <div class="adminSeparator"></div>
+    <div class="adminBottomBody">
+      <div class="tableHeader d-flex justify-content-center">
+        <div>
+          <h3>Booking list</h3>
+        </div>
+      </div>
+      <div class="tableBody d-flex justify-content-center">
+        <table id="myDatatable"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+
+              <!--<tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+              </tr>-->
+
+            <tr>
+              <th>Code</th>
+              <th>Adress</th>
+              <th>Room Type</th>
+              <th>Check In</th>
+              <th>Check Out</th>
+              <th>Total</th>
+              <th>Guests</th>
+              <th>Full Name</th>
+              <th>Arrival Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appointment of this.appointmentsArray">
+              <td class="appointmentId">{{appointment._id}}</td>
+              <td>{{appointment.address}}</td>
+              <td>{{appointment.propertyType}}</td>
+              <td>{{appointment.fromDate}}</td>
+              <td>{{appointment.toDate}}</td>
+              <td>{{appointment.price}}</td>
+              <td>{{appointment.guests}}</td>
+              <td>{{appointment.clientName}} {{appointment.clientSurname}}</td>
+              <td>{{appointment.arrivalTime}}</td>
+              <td><a (click)="cancelAppointment(appointment._id)" class="cancelBtn">CANCEL</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
