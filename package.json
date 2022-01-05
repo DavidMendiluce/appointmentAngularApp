@@ -1,10 +1,12 @@
 {
-  "name": "crudangularapp",
+  "name": "appointmentAngularApp",
   "version": "1.0.0",
-  "description": "crudAngularApp",
+  "description": "appointmentAngularApp",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "ng build",
+    "heroku-postbuild": "ng-build --prod"
   },
   "repository": {
     "type": "git",
