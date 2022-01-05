@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-posbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +34,10 @@
     "js-plugin-circliful": "^2.0.15",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@angular/cli": "~12.2.10",
+    "@angular/compiler-cli": "~12.2.0",
+    "typescript": "~4.3.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.10",
@@ -53,7 +57,7 @@
     "typescript": "~4.3.5"
   },
   "engines": {
-    "npm": ">=6.0.0",
-    "node": ">=10.0.0"
+    "node": "14.18.1",
+    "npm": "6.14.15"
   }
 }
