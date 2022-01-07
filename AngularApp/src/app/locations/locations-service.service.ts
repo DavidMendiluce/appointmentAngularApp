@@ -8,7 +8,7 @@ import { Location } from './location.model';
 export class LocationService {
   selectedLocation: Location;
   locations: Location[];
-  readonly baseURL = 'http://localhost:3000/locations';
+  readonly baseURL = 'locations';
 
   constructor(private http: HttpClient) { }
 

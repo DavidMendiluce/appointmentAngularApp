@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://userAngular:passwordAngular@cluster0.is2jg.mongodb.net/node-angular', (err) => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://userAngular:passwordAngular@cluster0.is2jg.mongodb.net/node-angular', (err) => {
     if(!err)
     console.log('MongoDB connection succeeded.');
     else 

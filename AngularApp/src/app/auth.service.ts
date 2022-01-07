@@ -38,7 +38,7 @@ export class AuthService {
   createUser(email: string | number | string[] | undefined, password: string | number | string[] | undefined,
      name: string | number | string[] | undefined, surname: string | number | string[] | undefined) {
     const authData: AuthData = {email: email, password: password, name: name, surname: surname};
-    this.http.post('http://localhost:3000/api/user/signupExpress', authData)
+    this.http.post('user/signupExpress', authData)
     .subscribe(() =>{
       this.router.navigate(["/"]);
     }, error => {
@@ -48,7 +48,7 @@ export class AuthService {
 
   login(email: string | number | string[] | undefined, password: string | number | string[] | undefined) {
     const authDataLogin: AuthDataLogin = {email: email, password: password}
-    this.http.post<{token: string, expiresIn: number, userId: string}>('http://localhost:3000/api/user/loginExpress',
+    this.http.post<{token: string, expiresIn: number, userId: string}>('api/user/loginExpress',
     authDataLogin)
       .subscribe(response => {
         const token = response.token;

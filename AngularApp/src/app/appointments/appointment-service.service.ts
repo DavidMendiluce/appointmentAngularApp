@@ -8,7 +8,7 @@ import { Appointment } from './appointment.model';
 export class AppointmentService {
   selectedAppointment: Appointment;
   appointments: Appointment[];
-  readonly baseURL = 'http://localhost:3000/appointments';
+  readonly baseURL = 'appointments';
 
   constructor(private http: HttpClient) { }
 
