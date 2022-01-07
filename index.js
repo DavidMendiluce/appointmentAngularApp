@@ -15,7 +15,10 @@ app.use(cors({origin: 'http://localhost:4200'}));
 //app.listen(3000, () => console.log('Server started at port: 3000'));
 
 if(process.env.NODE_ENV === 'production') {
-  
+  app.use(express.static("build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+  });
 }
 
 app.listen(process.env.PORT || 8080, function(){
